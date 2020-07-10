@@ -2,22 +2,23 @@ package com.chriniko.chess.infra.path;
 
 import com.chriniko.chess.infra.board.Position;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Path {
 
-	private final List<Position> positions;
+	private final Set<Position> positions;
 
 	public Path() {
-		positions = new LinkedList<>();
+		positions = new LinkedHashSet<>();
 	}
 
 	// Note: deep-copy.
 	public Path(Path other) {
-		this.positions = new LinkedList<>();
+		this.positions = new LinkedHashSet<>();
 
 		for (Position otherPosition : other.positions) {
 			this.positions.add(new Position(otherPosition.getName()));
@@ -53,7 +54,7 @@ public class Path {
 		return positions.size();
 	}
 
-	public List<Position> getPositions() {
-		return positions;
+	public Set<Position> getPositions() {
+		return Collections.unmodifiableSet(positions);
 	}
 }

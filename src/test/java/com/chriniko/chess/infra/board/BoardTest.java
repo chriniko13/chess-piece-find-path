@@ -1,9 +1,9 @@
 package com.chriniko.chess.infra.board;
 
 import com.chriniko.chess.infra.path.Path;
-import com.chriniko.chess.infra.piece.PieceColor;
 import com.chriniko.chess.infra.piece.Knight;
 import com.chriniko.chess.infra.piece.Piece;
+import com.chriniko.chess.infra.piece.PieceColor;
 import org.junit.Test;
 
 import java.util.HashSet;
@@ -72,6 +72,24 @@ public class BoardTest {
 
 		// then
 		assertEquals(testPiece, result);
+
+	}
+
+	@Test
+	public void test_bug_1() {
+
+		Board board = new Board();
+
+		Piece p = new Knight(PieceColor.WHITE, "");
+
+		board.setPiece(p, new Position("A1"));
+
+		assertEquals(1, board.getPiecesOnBoard());
+
+		board.removePiece(new Position("A1"));
+		board.removePiece(new Position("A1"));
+
+		assertEquals(0, board.getPiecesOnBoard());
 
 	}
 

@@ -14,7 +14,7 @@ import java.util.Set;
 @NotThreadSafe
 public class Board {
 
-	private static final int SIZE = 8;
+	static final int SIZE = 8;
 
 	private final Map<String, PathCalculator> pathCalculators = new HashMap<>();
 
@@ -39,6 +39,9 @@ public class Board {
 	}
 
 	public void removePiece(Position position) {
+		if (pieces[position.getX()][position.getY()] == null) {
+			return;
+		}
 		pieces[position.getX()][position.getY()] = null;
 		piecesByPosition.remove(position);
 		piecesOnBoard--;
